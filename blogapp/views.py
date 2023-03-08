@@ -7,9 +7,9 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from tutoring_blog.forms import UserRegistration, AddAvatar, UpdateProfile, UpdateProfileMeta, UpdateProfileAvatar, \
+from blogapp.forms import UserRegistration, AddAvatar, UpdateProfile, UpdateProfileMeta, UpdateProfileAvatar, \
     SaveCategory, SavePost
-from tutoring_blog.models import Category, Post, UserProfile
+from blogapp.models import Category, Post, UserProfile
 
 category_list = Category.objects.exclude(status=2).all()
 context = {
