@@ -44,6 +44,8 @@
     <script>
         $(function () {
             $('#login-user').submit(function (e) {
+
+
                 e.preventDefault();
                 var _this = $(this)
                 $('.err-msg').remove();
@@ -55,12 +57,18 @@
                     return false;
                 }
                 start_loader();
+
+
+               // alert($('#username'))
+
                 $.ajax({
                     headers: {
                         "X-CSRFToken": '{{csrf_token}}'
                     },
                     url: "{% url 'login-user' %}",
                     data: new FormData($(this)[0]),
+
+
                     cache: false,
                     contentType: false,
                     processData: false,
@@ -74,12 +82,17 @@
                     },
                     success: function (resp) {
                         console.log(resp)
+                        // Condition 1
                         if (typeof resp == 'object' && resp.status == 'success') {
                             // alert(resp)
                             el.removeClass("alert alert-danger err-msg")
                             location.href = "{% url 'home-page' %}"
+
+                            // Condition 2
                         } else if (resp.status == 'failed' && !!resp.msg) {
                             el.text(resp.msg)
+
+                            // Final
                         } else {
                             el.text("An error occured", 'error');
                             end_loader();

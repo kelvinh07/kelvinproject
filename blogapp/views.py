@@ -21,20 +21,37 @@ context = {
 
 # login
 def login_user(request):
+    #
+
+    # Before login, it will clear the cookies and session
     logout(request)
+
+    # Definition of the response message
     resp = {"status": 'failed', 'msg': ''}
+
+    kelvin_info = {"name is kelvin", 16}
+
+    # Just some variable for the form info
     username = ''
     password = ''
+
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
 
+        # Django process
         user = authenticate(username=username, password=password)
+
+        # Check the user exist
         if user is not None:
+            # This user is valid
+            # Same django process, and check the db
             login(request, user)
             resp['status'] = 'success'
         else:
             resp['msg'] = "Incorrect username or password"
+
+    # HttpResponse is django process
     return HttpResponse(json.dumps(resp), content_type='application/json')
 
 
