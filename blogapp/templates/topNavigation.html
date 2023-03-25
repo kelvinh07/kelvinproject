@@ -53,10 +53,27 @@
                             </li>
                         {% endif %}
                         <li class="nav-item me-3 me-lg-0">
-                            <a class="nav-link" href="{% url 'profile' %}">
+
+                            {#  #TODO  #}
+
+
+                            {% if user.profile.avatar.url|length > 1 %}
+                                <a class="nav-link" href="{% url 'profile' %}">
                                 <span class="me-1"><img src="{{ user.profile.avatar.url }}" alt="User Avatar"
                                                         id="user-avatar" class="img-thumbnail rounded-circle"></span>Hello, {{ user.first_name }} {{ user.last_name }}
-                            </a>
+                                </a>
+
+                            {% else %}
+
+                                <a class="nav-link" href="{% url 'profile' %}">
+                                    Hello, {{ user.first_name }} {{ user.last_name }}
+                                </a>
+
+                            {% endif %}
+
+                            {#  #TODO  #}
+
+
                             <!-- <a class="nav-link" href="{% url 'logout' %}">Logout</a> -->
                         </li>
                         <li class="nav-item me-3 me-lg-0">

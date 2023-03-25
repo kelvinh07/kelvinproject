@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path('redirect-admin', RedirectView.as_view(url="/admin"), name="redirect-admin"),
     path('', views.home, name="home-page"),
-    path('login', auth_views.LoginView.as_view(template_name="login.html", redirect_authenticated_user=True),
+    path('login', auth_views.LoginView.as_view(template_name="login_kelvin.html", redirect_authenticated_user=True),
          name='login'),
     path('userlogin', views.login_user, name="login-user"),
     path('user-register', views.register_user, name="register-user"),
