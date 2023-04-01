@@ -147,9 +147,16 @@ def update_avatar(request):
     user = User.objects.get(id=request.user.id)
     context['userData'] = user
     context['userProfile'] = user.profile
-    img = user.profile.avatar.url
 
-    context['img'] = img
+    try:
+        img = user.profile.avatar.url
+        if img is None:
+            context['img'] = ''
+        else:
+            context['img'] = img
+    except Exception:
+        pass
+
     if request.method == 'POST':
         form = UpdateProfileAvatar(request.POST, request.FILES, instance=user)
         if form.is_valid():
